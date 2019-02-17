@@ -9,7 +9,7 @@ describe('processes output array into result string', () => {
     ];
 
     const processed = outputToStr(input);
-    const output = '1 1 E \n3 3 N LOST \n2 3 S';
+    const output = '1 1 E\n3 3 N LOST\n2 3 S';
 
     expect(processed).toEqual(output);
   });
