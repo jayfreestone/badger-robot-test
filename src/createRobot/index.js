@@ -1,3 +1,5 @@
+const createVector = require('./../createVector');
+
 /**
  * @typedef {Object} robotInstance
  * @property {getPos} orientation
@@ -7,10 +9,10 @@
 
 /**
  * Robot instance factory.
- * @param {{ pos: [number, number], orientation: string }} inputObj
+ * @param {{ pos: Array<number>, orientation: string }} inputObj
  */
 function createRobot({ pos: initialPos, orientation: initialOrientation }) {
-  let pos = initialPos;
+  let pos = createVector(initialPos);
   let orientation = initialOrientation;
 
   return {
@@ -30,7 +32,7 @@ function createRobot({ pos: initialPos, orientation: initialOrientation }) {
       return pos;
     },
     moveTo(x, y) {
-      pos = [x, y];
+      pos = createVector(x, y);
     },
   };
 }
