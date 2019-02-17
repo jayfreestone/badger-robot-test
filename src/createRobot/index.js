@@ -12,6 +12,7 @@ const createVector = require('./../createVector');
  * @param {{ pos: Array<number>, orientation: string }} inputObj
  */
 function createRobot({ pos: initialPos, orientation: initialOrientation }) {
+  let lost = false;
   let pos = createVector(...initialPos);
   let orientation = initialOrientation;
 
@@ -30,6 +31,15 @@ function createRobot({ pos: initialPos, orientation: initialOrientation }) {
      */
     getPos() {
       return pos;
+    },
+    setLost(isLost) {
+      lost = Boolean(isLost);
+    },
+    /**
+     * @returns boolean;
+     */
+    getLost() {
+      return lost;
     },
     moveTo(x, y) {
       pos = createVector(x, y);
