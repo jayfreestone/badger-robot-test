@@ -11,6 +11,6 @@ describe('create a robot', () => {
   });
   test('with an orientation', () => {
     const inst = createRobot({ pos: [3, 4], orientation: NORTH });
-    expect(inst.getOrientation()).toEqual(SOUTH);
+    expect(inst.getOrientation()).toEqual(NORTH);
   });
 });
