@@ -1,8 +1,16 @@
+const commandHandler = require('./../commandHandler');
+
 function createLevel({ width, height }) {
   const robots = [];
 
+  function runInstruction(robotInst, instruction) {
+    const command = commandHandler(instruction, robotInst);
+    command.execute();
+  }
+
   function addRobot(robotInst, instructions) {
     robots.push(robotInst);
+    instructions.some(inst => runInstruction(robotInst, inst));
   }
 
   function getRobots() {
@@ -12,6 +20,7 @@ function createLevel({ width, height }) {
   return {
     addRobot,
     getRobots,
+    runInstruction,
   };
 }
 
