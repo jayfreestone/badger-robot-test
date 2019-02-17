@@ -1,4 +1,16 @@
+const { LEFT, RIGHT } = require('./../consts/directions');
+const calculateOrientation = require('./../utils/calculateOrientation');
 const calculateForwardPosition = require('./../utils/calculateForwardPosition');
+
+function createRotateCommand({ dir }, actor) {
+  return {
+    execute() {
+      actor.setOrientation(
+        calculateOrientation(actor.getOrientation(), dir),
+      );
+    },
+  };
+}
 
 function createMoveCommand(newPos, actor) {
   const oldPos = actor.getPos();
@@ -24,6 +36,10 @@ function createMoveForwardCommand(actor) {
 
 function commandHandler(commandStr, actor) {
   switch (commandStr) {
+    case LEFT:
+      return createRotateCommand({ dir: LEFT }, actor);
+    case RIGHT:
+      return createRotateCommand({ dir: RIGHT }, actor);
     case 'F':
       return createMoveForwardCommand(actor);
     default:
