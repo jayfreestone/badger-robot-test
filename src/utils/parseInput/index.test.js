@@ -3,7 +3,7 @@ const path = require('path');
 const parseInput = require('./index');
 
 test('input is parsed into object', () => {
-  const input = fs.readFileSync(path.resolve(__dirname, './../../../tests/input.txt'), 'utf8');
+  const input = fs.readFileSync(path.resolve(__dirname, './../../../input.txt'), 'utf8');
   const output = {
     grid: {
       width: 5,
