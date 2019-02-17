@@ -36,6 +36,7 @@ function createLevel({ width, height }) {
 
     // Otherwise add a scent and exit
     addScent(startingPosition);
+    robotInst.setLost(true);
 
     return true;
   }
