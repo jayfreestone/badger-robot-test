@@ -4,6 +4,10 @@ const {
   EAST,
   WEST,
 } = require('./../consts/orientations');
+const {
+  LEFT,
+  RIGHT,
+} = require('./../consts/directions');
 const commandHandler = require('./index');
 
 describe('handles command', () => {
@@ -90,6 +94,37 @@ describe('handles command', () => {
       expect(calls[0][0]).toBe(2);
       // The y position should remain the same.
       expect(calls[0][1]).toBe(4);
+    });
+  });
+
+  describe('rotate', () => {
+    test('left from east', () => {
+      const robotInst = {
+        setOrientation: jest.fn(),
+        getOrientation() {
+          return EAST;
+        },
+      };
+
+      commandHandler(LEFT, robotInst).execute();
+
+      const { calls } = robotInst.setOrientation.mock;
+      expect(calls.length).toBe(1);
+      expect(calls[0][0]).toBe(NORTH);
+    });
+    test('right from east', () => {
+      const robotInst = {
+        setOrientation: jest.fn(),
+        getOrientation() {
+          return EAST;
+        },
+      };
+
+      commandHandler(RIGHT, robotInst).execute();
+
+      const { calls } = robotInst.setOrientation.mock;
+      expect(calls.length).toBe(1);
+      expect(calls[0][0]).toBe(SOUTH);
     });
   });
 });
