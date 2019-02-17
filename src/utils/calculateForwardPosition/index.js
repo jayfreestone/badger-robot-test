@@ -5,10 +5,16 @@ const {
   WEST,
 } = require('../../consts/orientations');
 
-function calculateForwardPosition(pos, dir) {
+/**
+ * Calculates the next position based on the current coordinates.
+ * @param {Array<number>} pos Current coordinates
+ * @param {string} orientation Current orientation
+ * @return {Array<number>} The next coordinates
+ */
+function calculateForwardPosition(pos, orientation) {
   const [x, y] = pos;
 
-  switch (dir) {
+  switch (orientation) {
     case NORTH:
       return [x, y + 1];
     case SOUTH:
@@ -18,7 +24,7 @@ function calculateForwardPosition(pos, dir) {
     case WEST:
       return [x - 1, y];
     default:
-      throw new Error('Direction invalid');
+      throw new Error('Orientation invalid');
   }
 }
 
