@@ -1,6 +1,7 @@
 const commandHandler = require('./../commandHandler');
 
 function createLevel({ width, height }) {
+  const scents = new Set([]);
   const robots = [];
 
   function withinBounds([x, y]) {
@@ -8,16 +9,33 @@ function createLevel({ width, height }) {
     return true;
   }
 
+  function addScent(pos) {
+    scents.add(pos);
+  }
+
   function runInstruction(robotInst, instruction) {
+    const startingPosition = robotInst.getPos();
     const command = commandHandler(instruction, robotInst);
+
     command.execute();
 
     const newPosition = robotInst.getPos();
 
-    // We are okay, continue
+    // Early exit if we're within bounds
     if (withinBounds(newPosition)) {
       return false;
     }
+
+    // We are outside of bounds, so undo the last command
+    command.undo();
+
+    // If a scent was left from a previous actor, continue
+    if (scents.has(startingPosition)) {
+      return false;
+    }
+
+    // Otherwise add a scent and exit
+    addScent(startingPosition);
 
     return true;
   }
