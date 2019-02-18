@@ -30,6 +30,6 @@ Built using node `v10.15.1`.
 - I regret not using TypeScript - it would have been far easier than trying to type with JSDoc, especially when sharing types across files.
 
 ## Next steps
-- There are some spaces where tests are lacking, particularly on `createLevel`. There should be tests that ensure early exist happens when a scent is found, that a scent is correctly added, that `withinBound` works as desired etc.
+- There are some spaces where tests are lacking, particularly on `createLevel`. There should be tests that ensure early exit happens when a scent is found, that a scent is correctly added, that `withinBound` works as desired etc.
 - There’s duplication in testing code that could be cleaned up and extracted (e.g. in `commandHandler`).
 - It would be great to have a simple UI that allow for input entry directly, since the text file is pretty lame. On top of this, a minor refactor or `simulation` would make it very easy to get the data out for rendering a grid-style UI with React or similar.
